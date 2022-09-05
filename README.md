@@ -55,6 +55,10 @@ As a user,
 So that I can use MakersBnb,
 I would like to confirm bookings of my space
 
+As a user
+So that I can maximise bookings for my space(s)
+I want to be able to a range of available booking dates for them
+
 ### Mockups
 
 Mockups for MakersBnB are available [here](https://github.com/makersacademy/course/blob/main/makersbnb/makers_bnb_images/MakersBnB_mockups.pdf).
