@@ -45,6 +45,10 @@ I would like to log in
 
 As a user, 
 So that I can use MakersBnb,
+I would like to add a new space
+
+As a user, 
+So that I can use MakersBnb,
 I would like to view a list of spaces
 
 As a user, 
