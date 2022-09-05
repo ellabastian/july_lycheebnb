@@ -40,14 +40,6 @@ So that I can use MakersBnb,
 I would like to create an account
 
 As a user, 
-So that I can see, create and book listings 
-I would like to log in
-
-As a user, 
-So that I can use MakersBnb,
-I would like to add a new space
-
-As a user, 
 So that I can use MakersBnb,
 I would like to view a list of spaces
 
@@ -55,11 +47,13 @@ As a user,
 So that I can use MakersBnb,
 I would like to see specific information (name, description and price) about a space
 
-As a user
-So that I can maximise bookings for my space(s)
-I want to be able to a range of available booking dates for them
+As a user, 
+So that I can see, create and book listings 
+I would like to log in
 
-
+As a user, 
+So that I can use MakersBnb,
+I would like to confirm bookings of my space
 
 ### Mockups
 
