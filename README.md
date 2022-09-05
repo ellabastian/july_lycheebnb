@@ -39,6 +39,10 @@ As a user,
 So that I can use MakersBnb,
 I would like to create an account
 
+As a user, 
+So that I can use MakersBnb,
+I would like to view a list of spaces
+
 ### Mockups
 
 Mockups for MakersBnB are available [here](https://github.com/makersacademy/course/blob/main/makersbnb/makers_bnb_images/MakersBnB_mockups.pdf).
