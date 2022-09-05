@@ -47,7 +47,7 @@ As a user,
 So that I can use MakersBnb,
 I would like to see specific information (name, description and price) about a space
 
-As a user 
+As a user, 
 So that I can see, create and book listings 
 I would like to log in
 
