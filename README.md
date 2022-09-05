@@ -35,6 +35,9 @@ We would like a web application that allows users to list spaces they have avail
 
 # User Stories:
 
+As a user, 
+So that I can use MakersBnb,
+I would like to create an account
 
 ### Mockups
 
