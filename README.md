@@ -39,6 +39,10 @@ As a user,
 So that I can use MakersBnb,
 I would like to create an account
 
+As a user 
+So that I can add my space 
+I want to provide a description/picture/name/price
+
 As a user, 
 So that I can use MakersBnb,
 I would like to view a list of spaces
