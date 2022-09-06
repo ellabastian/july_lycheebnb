@@ -21,4 +21,10 @@ get '/signin' do
       return erb(:signin)
 end 
 
+post '/signup' do 
+      return erb(:spaces)      
 end 
+
+end 
+
+#redirect_to :signin, notice: "Oops something didn't work"
