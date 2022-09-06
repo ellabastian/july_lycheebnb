@@ -1,4 +1,4 @@
-# Post - Model and Repository Classes Design Recipe
+# Users & Spaces - Model and Repository Classes Design Recipe
 ```
   As a user, 
   So that I can use MakersBnb, 
@@ -7,7 +7,7 @@
   As a user, 
   So that I can use MakersBnb, 
   I would like to view a list of spaces
-  
+
   As a user, 
   So that I can use MakersBnb, 
   I would like to see specific information (name, description and price) about a space
@@ -25,6 +25,7 @@
 ```
 ## 1. Design and create the Table
 ```sql
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name text,
@@ -32,7 +33,7 @@ CREATE TABLE users (
   password text
 );
 
-----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 CREATE TABLE spaces (
   id SERIAL PRIMARY KEY,
@@ -47,6 +48,7 @@ CREATE TABLE spaces (
   user_id int,
   constraint fk_user foreign key(user_id) references users(id)
 );
+
 ```
 ## 2. Create Test SQL seeds
 ```sql
@@ -66,6 +68,7 @@ INSERT INTO spaces (name, description, price_per_night, available_from, availabl
 ```
 ## 3. Implement the Model class
 ```ruby
+
 # Model class
 class User
   attr_accessor :id, :name, :email, :password
@@ -75,11 +78,12 @@ end
 class Space
   attr_accessor :id, :name, :description, :price_per_night, :available_from, :available_to, :requested, :confirmed, :user_id
 end
+
 ```
 
 ## 4. Define the Repository Class interface
 ```ruby
-# Repository class
+# User Repository class
 class UserRepository
   # Selecting all records
   def all
@@ -97,11 +101,13 @@ class UserRepository
   end
 end
 
-----------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
 # As a user, So that I can use MakersBnb, I would like to view a list of spaces
+
+# Space Repository class
 class SpaceRepository
-  # Selecting all records
+  # Selecting all spaces
   def all
     # SELECT * FROM spaces WHERE status = false;
   end
@@ -110,6 +116,7 @@ class SpaceRepository
     # INSERT INTO spaces (name, description, price_per_night, available_from, available_to, requested, confirmed, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
   end
 end
+
 ```
 ## 5. Write Test Examples
 
@@ -118,11 +125,9 @@ end
 
 # 1. Get all users
 repo = UserRepository.new
-spaces_repo = SpaceRepository.new
+users = repo.all
 
-spaces = repo.all
-
-# users.length # =>  4
+users.length # =>  3
 
 users[0].id # =>  1
 users[0].name # =>  'test1'
@@ -139,7 +144,7 @@ users[2].name # =>  'test3'
 users[2].email # => 'test3@email.com'
 users[2].password # =>  'password333'
 
-# 2. Adds new record 
+# 2. Adds a new user 
 repo = UserRepository.new
 
 new_user = User.new
@@ -148,9 +153,9 @@ new_user.email # = 'David@david.com'
 new_user.password #= David123
 repo.create(new_user)
 
-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
-# 1. Adds new space record 
+# 1. Adds a new space  
 spaces_repo = SpaceRepository.new
 new_space = Space.new
 new_space.name # = 'room'
@@ -165,9 +170,12 @@ new_space.user_id #= 1
 spaces_repo.create(new_space)
 
 # 2. Gets all spaces
-
+spaces_repo = SpaceRepository.new
 all_spaces = spaces_repo.all
+
 all_spaces.length #= 4
+all_spaces[0].name # =>  'first'
+all_spaces[0].description # =>  'Amazing Space'
 
 ```
 ## 6. Reload the SQL seeds before each test run
@@ -187,7 +195,7 @@ describe UserRepository do
   end
 end
 
-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 def reset_spaces_table
   seed_sql = File.read('spec/seeds.sql')
@@ -200,6 +208,7 @@ describe SpaceRepository do
     reset_spaces_table
   end
 end
+
 ```
 
 ## 7. Test-drive and implement the Repository class behaviour
