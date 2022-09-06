@@ -52,4 +52,17 @@ describe "#all" do
         expect(all_users[3].name).to eq('Kermit')
     end
   end
+
+  describe "#find_user_by_email" do
+  it "returns a single user from their given email" do    
+      repo = UserRepository.new
+
+      user = repo.find_user_by_email('test3@email.com')
+
+      expect(user.email).to eq('test3@email.com')
+      expect(user.name).to eq('test3')
+      expect(user.password).to eq('password333')
+  end
+end
+
 end

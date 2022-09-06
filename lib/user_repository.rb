@@ -19,6 +19,11 @@ class UserRepository
     DatabaseConnection.exec_params(sql,params)
   end
 
+  def find_user_by_email(email)
+    sql = 'SELECT * FROM users WHERE email = $1;'
+    result = DatabaseConnection.exec_params(sql,[email])
+    return users_object(result)[0]
+  end
 
   private 
 
