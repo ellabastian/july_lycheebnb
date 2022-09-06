@@ -1,13 +1,17 @@
 <html>
   <head>
-  
-  <ul>
-  <li><a href='/'> Home </a></li>
-  </ul>
-  
+      <title>Spaces</title>
   </head>
 
   <body>
+      <nav>
+      <ul>
+      <li>Home</li>
+      <li>Sign out</li>
+      <li>Requests</li>
+      </ul>
+      </nav>
+
     <h1> Welcome to Lychee MakersBnB </h1>
     
     <p> Below you will find a selection of spaces you can book.
@@ -15,18 +19,22 @@
 
     <h2> Book a Space </h2>
    
-      <form action='/list_space'>
+      <form action='/space/new'>
         <input type="submit" value='List a space' />
       </form>
 
     <h2> Choose a date to book </h2>
 
-    <form action='/list_space' method='POST'>
+    <form action='/space/new' method='POST'>
             <p> Start date </p>
             <input type="text" name="booking_start_date">
             <input type="submit" value='See available space'/>
       </form>
-   
+
+      <% @space_repo.all.each do |space| %>
+      <h1><%=space.name%></h1>
+      <h2><%=space.description%></h2>
+      <%end%>  
 
   </body>
 </html>
