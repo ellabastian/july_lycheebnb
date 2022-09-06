@@ -46,6 +46,7 @@ post '/signup' do
             return erb(:spaces)
             end 
 end 
+
 get '/signin' do
       erb :login
 end 
@@ -69,6 +70,7 @@ post '/login' do
       end
 
       erb :spaces
+      
 end
 
 
