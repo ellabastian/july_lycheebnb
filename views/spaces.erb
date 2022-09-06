@@ -34,6 +34,9 @@
       <% @space_repo.all.each do |space| %>
       <h1><%=space.name%></h1>
       <h2><%=space.description%></h2>
+      <form action='space/<%= space.id%>' method="GET">
+          <button>Booking Page</button>
+      </form>
       <%end%>  
 
   </body>
