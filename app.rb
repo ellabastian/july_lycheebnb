@@ -18,9 +18,34 @@ class Application < Sinatra::Base
             erb :sign_up
       end 
 
-      post '/signup' do 
-            return erb(:spaces)      
+post '/signup' do 
+      if params[:name] == nil || params[:email] == nil || params[:password] == nil
+            status 400
+            return ''
       end 
+
+      name = params[:name]
+      email = params[:email]
+      password = params[:password]
+
+      repo = UserRepository.new
+      all_users = repo.all 
+
+      all_users.each do |user| 
+            if user.email.include? email   
+                  # Want to flash a message before redirecting
+                  # flash[:notice] = "Email already registered. Please log in" 
+                  return erb(:login)
+                  end 
+            new_user = User.new
+            new_user.name = name
+            new_user.email = email 
+            new_user.password = password
+
+            repo.create(new_user)
+            return erb(:spaces)
+            end 
+end 
 
       # login pages
       get '/login' do
@@ -54,7 +79,9 @@ class Application < Sinatra::Base
 
             return erb :spaces
       end
-
+      erb :spaces
+      
+end
       # add a new space
       get '/space/new' do
             erb :space_new
