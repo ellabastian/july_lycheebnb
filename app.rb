@@ -13,13 +13,38 @@ class Application < Sinatra::Base
         also_reload 'lib/user_repository'
 end
 
+
 get '/' do
-      erb :sign_up
+      erb :signup
 end 
 
 post '/signup' do 
-      return erb(:spaces)      
+      if params[:name] == nil || params[:email] == nil || params[:password] == nil
+            status 400
+            return ''
+      end 
 
+      name = params[:name]
+      email = params[:email]
+      password = params[:password]
+
+      repo = UserRepository.new
+      all_users = repo.all 
+
+      all_users.each do |user| 
+            if user.email.include? email   
+                  # Want to flash a message before redirecting
+                  # flash[:notice] = "Email already registered. Please log in" 
+                  return erb(:login)
+                  end 
+            new_user = User.new
+            new_user.name = name
+            new_user.email = email 
+            new_user.password = password
+
+            repo.create(new_user)
+            return erb(:spaces)
+            end 
 end 
 
 get '/signin' do
@@ -45,6 +70,7 @@ post '/login' do
       end
 
       erb :spaces
+      
 end
 
 
