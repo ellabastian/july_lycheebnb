@@ -8,6 +8,24 @@ class SpaceRepository
     return space_object(result)
   end
 
+  def all_recieved_requests(user_id)
+    sql =  'SELECT * FROM spaces WHERE requested = t AND id = $1;'
+    result = DatabaseConnection.exec_params(sql,[user_id])
+    return space_object(result)
+  end
+
+  # space_id
+  def request_a_space(id)
+    sql = 'UPDATE spaces SET requested = t WHERE id = $1;'
+    DatabaseConnection.exec_params(sql,[id])
+  end
+
+  def find(id)
+    sql =  'SELECT * FROM spaces WHERE id = $1;'
+    result = DatabaseConnection.exec_params(sql,[id])
+    return space_object(result)[0]
+  end
+
   def create(space)
     sql = 'INSERT INTO spaces (name, description, price_per_night, available_from, available_to, requested, confirmed, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);'
     params = [space.name, space.description, space.price_per_night, space.available_from, space.available_to, space.requested, space.confirmed, space.user_id]
