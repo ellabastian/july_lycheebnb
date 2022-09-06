@@ -1,5 +1,4 @@
-# july_lycheebnb
-
+# LycheeBNB
 
 # MakersBnB specification
 
@@ -33,8 +32,8 @@ We would like a web application that allows users to list spaces they have avail
 - A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
 - Basic payment implementation though Stripe.
 
-# User Stories:
-
+### User Stories:
+```
 As a user, 
 So that I can use MakersBnb,
 I would like to create an account
@@ -59,6 +58,7 @@ As a user,
 So that I can maximise bookings for my space(s),
 I want to be able to show a range of available booking dates for them
 
+```
 ### Mockups
 
 Mockups for MakersBnB are available [here](https://github.com/makersacademy/course/blob/main/makersbnb/makers_bnb_images/MakersBnB_mockups.pdf).
