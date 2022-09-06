@@ -14,16 +14,26 @@ class Application < Sinatra::Base
 end
 
 get '/' do
-      return erb(:home)
-end 
-
-get '/signin' do
-      return erb(:signin)
+      erb :sign_up
 end 
 
 post '/signup' do 
       return erb(:spaces)      
+
 end 
+
+get '/signin' do
+      erb :login
+end 
+
+post '/login' do
+      
+end
+
+
+get '/spaces' do
+      
+end
 
 end 
 
