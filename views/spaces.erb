@@ -1,0 +1,51 @@
+<html>
+  <head>
+  
+  <ul>
+  <li><a href='/'> Home </a></li>
+  </ul>
+  
+  </head>
+
+  <body>
+    <h1> Welcome to Lychee MakersBnB </h1>
+    
+    <p> Below you will find a selection of spaces you can book.
+    Press on the "List a Space" button to list your own space</p>
+
+    <h2> Book a Space </h2>
+   
+      <form action='/list_space'>
+        <input type="submit" value='List a space' />
+      </form>
+
+    <h2> Choose a date to book </h2>
+
+    <form action='/list_space' method='POST'>
+            <p> Start date </p>
+            <input type="text" name="booking_start_date">
+            <input type="submit" value='See available space'/>
+      </form>
+   
+
+  </body>
+</html>
+
+<form action="/signup" method="POST">
+      <div>
+            <p> Enter your name </p>
+            <input type="text" name="name">
+      </div>
+
+      <div>
+            <p> Enter the email address </p>
+            <input type="text" name="email">
+       </div>
+
+      <div>
+            <p> Enter your password </p>
+            <input type="text" name="password">
+      </div>
+
+      <input type="submit" value="Create account">
+    </form>
