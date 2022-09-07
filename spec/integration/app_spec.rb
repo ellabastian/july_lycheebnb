@@ -75,15 +75,16 @@ context "GET /confirmations" do
 
 context "POST /confirmations" do
       it "updates the confirmed column in the database to true when the user clicks confirm request button" do
-            response = post("/confirmations")
-            expect(response.status).to eq 200
-            end
-
-      it "the confirmed column in the database remains false when the user clicks the deny request button" do
-            response = post("/confirmations")
+            response = post("/confirmations", )
             expect(response.status).to eq 200
             end
       end
+
+#       it "the confirmed column in the database remains false when the user clicks the deny request button" do
+#             response = post("/confirmations")
+#             expect(response.status).to eq 200
+#             end
+#       end
 
       
 

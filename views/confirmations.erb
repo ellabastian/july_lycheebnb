@@ -16,15 +16,19 @@
 
     <h3> Please confirm or deny your requests below </h3>
     
-    <%# List of requests %>
-  
+    <div class='requests_received'>
+    <h3>Pending Requests</h3>
+    <% @arr.each do |space|%>
+    <h4><%= space.name.upcase%></h4>
+    <h4><%= @selected_date%></h4><br>
+    <%end%>
+    </div>
 
-
-    <form action='/confirmations'>
+    <form action='/confirmations' method = 'POST'>
         <input type="submit" value='Confirm Booking' />
     </form>
 
-    <form action='/confirmations'>
+    <form action='/confirmations' method = 'POST'>
         <input type="submit" value='Deny Booking' />
     </form>
 
