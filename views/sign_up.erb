@@ -1,33 +1,25 @@
+<!DOCTYPE html>
 <html>
-  <head>
-  
-  <ul>
-  <li><a href='/login'> Log in </a></li>
-  </ul>
-  
-  </head>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Signup Page</title>
+</head>
+<body>
+    <%# nav bar %>
+    <div class="topnav">
+    <a href="/login">Login</a>
+    <a href="#">About</a>
+    </div>
 
-  <body>
-    <h1> Welcome to Lychee MakersBnB </h1>
-    <h2> Please, create your account below </h2>
-    <form action="/signup" method="POST">
-      <div>
-            <p> Enter your name </p>
-            <input type="text" name="name">
-      </div>
-
-      <div>
-            <p> Enter the email address </p>
-            <input type="text" name="email">
-      </div>
-
-      <div>
-            <p> Enter your password </p>
-            <input type="text" name="password">
-      </div>
-
-      <input type="submit" value="Create account">
+    <h2> Welcome to Lychee MakersBnB </h2>
+    
+    <%# sign up form %>
+    <form class="box" action="/signup" method="post">
+        <h1>Signup</h1>
+        <input type="text" name="name" maxlength="10" autocomplete='off' placeholder="Username" required>
+        <input type="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="20" autocomplete='off' placeholder="Email" required>
+        <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="20" placeholder="Password" required>
+        <button type="submit" name="signup">Create your account</button>
     </form>
-
-  </body>
+</body>
 </html>
