@@ -69,7 +69,7 @@ context "GET /confirmations" do
       it "returns the confirmations page" do
             response = get("/confirmations")
             expect(response.status).to eq 200
-            expect(response.body).to include "<h2> Please confirm or deny your requests below </h2>"
+            expect(response.body).to include "<h3> Please confirm or deny your requests below </h3>"
             end
       end
 
