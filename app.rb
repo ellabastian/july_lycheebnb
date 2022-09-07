@@ -145,9 +145,13 @@ class Application < Sinatra::Base
 
       post '/confirmations' do
             @space_repo = SpaceRepository.new
-            requested = params[:requested]
-            confirmed = params[:confirmed]
 
+            selected_date = params[:selection]
+
+            space_id = params[:space_id].to_i
+            @space = space_repo.find(space_id)
+
+            @repo.confirm_space(space_id)
       end
 
 end 

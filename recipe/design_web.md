@@ -50,6 +50,15 @@ CREATE TABLE spaces (
 );
 
 ```
+CREATE TABLE requests (
+  id SERIAL PRIMARY KEY,
+  requested_by_name text,
+  space_name text,
+  date_requested date,
+ 	user_id int,
+  constraint fk_user foreign key(user_id) references users(id)
+);
+
 ## 2. Create Test SQL seeds
 ```sql
 

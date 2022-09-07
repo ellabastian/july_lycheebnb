@@ -33,6 +33,12 @@ class SpaceRepository
     DatabaseConnection.exec_params(sql,params)
   end
 
+  def confirm_space(id)
+    sql = 'UPDATE spaces SET requested = true WHERE id = $1;'
+    params = [id]
+    DatabaseConnection.exec_params(sql,[id])
+  end
+
     private 
 
   def space_object(result)
