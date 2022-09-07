@@ -71,7 +71,6 @@ class Application < Sinatra::Base
             end
             
             erb :spaces
-
       end
 
       # list all spaces
@@ -120,7 +119,7 @@ class Application < Sinatra::Base
             erb :space_id
       end
 
-
+      #requests
       get '/request_form' do
             repo = SpaceRepository.new
             # @space = repo.find(id)
@@ -139,5 +138,4 @@ class Application < Sinatra::Base
 
             erb :requests
       end
-
       end 

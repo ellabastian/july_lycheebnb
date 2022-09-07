@@ -28,16 +28,16 @@ class UserRepository
   private 
 
   def users_object(result)
-   users = []
-   result.each do |record|
-    user = User.new
-    user.id = record['id'].to_i
-    user.name = record['name']
-    user.email = record['email']
-    user.password = record['password']
+    users = []
+    result.each do |record|
+      user = User.new
+      user.id = record['id'].to_i
+      user.name = record['name']
+      user.email = record['email']
+      user.password = record['password']
 
     users << user
   end
   return users
- end
+  end
 end

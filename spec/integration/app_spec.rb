@@ -3,70 +3,65 @@ require_relative '../../app'
 require "rack/test"
 
 describe Application do
-      # This is so we can use rack-test helper methods.
       include Rack::Test::Methods
-    
-      # We need to declare the `app` value by instantiating the Application
-      # class so our tests work.
       let(:app) { Application.new }
+
 
 context 'GET /' do
       it "should return the HTML home page with sign-up/sign-in" do
             response = get('/')
 
             expect(response.status).to eq(200)
-            expect(response.body).to include "<h1> Welcome to Lychee MakersBnB </h1>"
-
+            expect(response.body).to include "<h2> Welcome to Lychee MakersBnB </h2>"
       end 
 end 
 
-context 'GET /signin' do
+context 'GET /login' do
       it "should return the HTML page with sign-in" do
-            response = get('/signin')
+            response = get('/login')
 
             expect(response.status).to eq(200)
             expect(response.body).to include "<h1> Please, sign in below </h1>"
-
       end 
 end 
 
-context 'POST /signup' do
-      it "should check the email address doesn't already exist(new email address given)" do
-            response = post('/signup', name: 'newuser', email: 'newuser@newuser.com', password: 'password1')
-
-
+context 'GET /' do
+            it 'returns HTML form for user to fill out' do
+            response = get('/')
             expect(response.status).to eq(200)
-            expect(response.body).to include '<p> Below you will find a selection of spaces you can book.'
+            expect(response.body).to include '<form class="box" action="/signup" method="post">'
+      end
+end
 
-            repo = UserRepository.new
-            all_users = repo.all
-            expect(all_users.last.name).to eq 'newuser'
-
-      end 
-
-      it "should check the email address doesn't already exist(existing email address given" do
+context 'POST /signup' do
+      it "redirects user to login page if email address exists" do
             response = post('/signup', name: 'newuser', email: 'test1@email.com', password: 'password1')
-
-
             expect(response.status).to eq(200)
-            expect(response.body).to include 'Email already registered. Please log in'
+            expect(response.body).to include '<h1> Please, sign in below </h1>'
+            end 
 
-      end 
-end 
+      it "creates a new user if information are valid" do
+            response = post("/signup", name: 'Mike', email: 'Mike@gmail.com', password: 'Mike1234')
+            expect(response.status).to eq(302)
 
+            response = get('/spaces')
+            expect(response.body).to include '<h2> Book a Space </h2>'
+            end 
+      end
 
-context 'POST /signup' do
-      it "should add a valid user and return the main spaces HTML page" do
-            response = post('/signup', name: 'newuser', email: 'newuser@newuser.com', password: 'password1')
+context "GET /spaces" do
+      it "returns a list of all spaces" do
+            response = get("/spaces")
+            expect(response.status).to eq (200)
+            expect(response.body).to include ('<h2> Choose a date to book </h2>')
+      end
+end
 
-
-            expect(response.status).to eq(200)
-            expect(response.body).to include '<p> Below you will find a selection of spaces you can book.'
-
-            repo = UserRepository.new
-            all_users = repo.all
-            expect(all_users.last.name).to eq 'newuser'
-
-      end 
-end 
+context "GET /space/new" do
+            it "return new space page" do
+            response = get("/space/new")
+            expect(response.status).to eq 200
+            expect(response.body).to include "<h1>Create a space</h1>"
+            end
+      end
 end

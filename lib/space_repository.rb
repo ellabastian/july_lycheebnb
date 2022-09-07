@@ -9,14 +9,15 @@ class SpaceRepository
   end
 
   def all_recieved_requests(user_id)
-    sql =  'SELECT * FROM spaces WHERE requested = t AND id = $1;'
+    sql =  'SELECT * FROM spaces WHERE requested = true AND id = $1;'
     result = DatabaseConnection.exec_params(sql,[user_id])
     return space_object(result)
   end
 
   # space_id
-  def request_a_space(id)
-    sql = 'UPDATE spaces SET requested = t WHERE id = $1;'
+  def request_a_space(id,val)
+    sql = 'UPDATE spaces SET requested = $2 WHERE id = $1;'
+    params = [id,val]
     DatabaseConnection.exec_params(sql,[id])
   end
 
@@ -35,21 +36,21 @@ class SpaceRepository
     private 
 
   def space_object(result)
-   spaces = []
-   result.each do |record|
-    space = Space.new
-    space.id = record['id'].to_i
-    space.name = record['name']
-    space.description = record['description']
-    space.price_per_night = record['price_per_night'].to_i
-    space.available_from = record['available_from']
-    space.available_to = record['available_to']
-    space.requested = record['requested']
-    space.confirmed = record['confirmed']
-    space.user_id = record['user_id'].to_i
+    spaces = []
+    result.each do |record|
+      space = Space.new
+      space.id = record['id'].to_i
+      space.name = record['name']
+      space.description = record['description']
+      space.price_per_night = record['price_per_night'].to_i
+      space.available_from = record['available_from']
+      space.available_to = record['available_to']
+      space.requested = record['requested']
+      space.confirmed = record['confirmed']
+      space.user_id = record['user_id'].to_i
     
     spaces << space
   end
   return spaces
- end
+  end
 end
