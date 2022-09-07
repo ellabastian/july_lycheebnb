@@ -1,6 +1,13 @@
 require_relative './space.rb'
 
 class SpaceRepository
+
+ attr_accessor :bookings
+  
+  def initialize
+    self.bookings = []
+  end
+
   # Selecting all spaces
   def all
     sql =  'SELECT * FROM spaces WHERE confirmed = false;'
@@ -32,6 +39,7 @@ class SpaceRepository
     params = [space.name, space.description, space.price_per_night, space.available_from, space.available_to, space.requested, space.confirmed, space.user_id]
     DatabaseConnection.exec_params(sql,params)
   end
+
 
   def confirm_space(id)
     sql = 'UPDATE spaces SET confirmed = true WHERE id = $1;'

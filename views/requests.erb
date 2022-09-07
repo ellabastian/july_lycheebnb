@@ -18,7 +18,10 @@
   <% @arr.each do |space|%>
   <h4><%= space.name.upcase%></h4>
   <h4><%= space.confirmed%></h4>
-  <h4><%= @selected_date%></h4><br>
+  <h4><%= @selected_date%></h4>
+  <form action='/confirmations' method='get'>
+   <button>Confirmation Page</button>
+ </form><br>
   <%end%>
 </div>
 
@@ -27,6 +30,8 @@
 <% @req_made.each do |request|%>
 <h4><%= request.space_name%></h4>
 <h4><%= request.date_requested%></h4>
+<h4>Not Confirmed<h4>
+<br>
 <%end%>
 </div>
 

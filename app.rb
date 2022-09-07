@@ -126,10 +126,19 @@ class Application < Sinatra::Base
             # "2022-09-09"
       
             @selected_date = params[:selection] # this is the selected date by the user
+            if @repo.bookings.include?(@selected_date)
+              return erb :date_exists
+            else
+            #@repo.bookings << @selected_date
+            end
+            # binding.irb
+            #if arr_of_bookings.include?(@selected_date)
+            # arr_of_bookings = @space_class.bookings
+
             space_id = params[:space_id].to_i # this is the space the user wants to book
             @repo.request_a_space(space_id)  # changing the requested status to true
       
-
+            #binding.irb
             # req = repo.all_recieved_requests(user_id)
             # space.requested = 't'
             @space = @repo.find(space_id)
@@ -173,6 +182,13 @@ class Application < Sinatra::Base
 
 
 
+      end
+
+      private
+
+      def bookings
+        date_bookings = []
+        return date_bookings
       end
 
 end 
