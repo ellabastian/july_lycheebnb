@@ -131,7 +131,7 @@ class Application < Sinatra::Base
             else
             #@repo.bookings << @selected_date
             end
-            binding.irb
+            # binding.irb
             #if arr_of_bookings.include?(@selected_date)
             # arr_of_bookings = @space_class.bookings
 
