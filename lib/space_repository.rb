@@ -15,9 +15,9 @@ class SpaceRepository
   end
 
   # space_id
-  def request_a_space(id,val)
-    sql = 'UPDATE spaces SET requested = $2 WHERE id = $1;'
-    params = [id,val]
+  def request_a_space(id)
+    sql = 'UPDATE spaces SET requested = true WHERE id = $1;'
+    params = [id]
     DatabaseConnection.exec_params(sql,[id])
   end
 

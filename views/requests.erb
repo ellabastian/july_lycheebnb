@@ -1,6 +1,5 @@
 <h1>Requests page</h1>
 
-<h2>Requests I've received:</h2>
-<% @repo.all.each do |space|%>
-<h1><%=space.requested%></h1>
-<% end%>
+<% @repo.all.each |space|%>
+<h1><%= space.requested == true%></h1>
+<%end%>

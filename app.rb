@@ -121,7 +121,7 @@ class Application < Sinatra::Base
 
       #requests
       get '/request_form' do
-            repo = SpaceRepository.new
+            @repo = SpaceRepository.new
             # @space = repo.find(id)
             selected_date = params[:selection]
             # "2022-09-09"
@@ -129,10 +129,10 @@ class Application < Sinatra::Base
             space_id = params[:space_id].to_i
             @space = repo.find(space_id)
             # @space.requested = 't'
-            repo.request_a_space(space_id)
+            @repo.request_a_space(space_id)
             user_id = @space.user_id.to_i
 
-            binding.irb
+            # binding.irb
             # req = repo.all_recieved_requests(user_id)
             # space.requested = 't'
 
