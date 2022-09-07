@@ -33,6 +33,12 @@ class SpaceRepository
     DatabaseConnection.exec_params(sql,params)
   end
 
+  def bookings(date_confirmed)
+    date_bookings = []
+    date_bookings << date_confirmed
+    return date_bookings
+  end
+  
     private 
 
   def space_object(result)
