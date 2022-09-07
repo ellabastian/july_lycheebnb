@@ -15,20 +15,12 @@
     <h2> Welcome to Lychee MakersBnB </h2>
 
     <h3> Please confirm or deny your requests below </h3>
-    
-    <div class='requests_received'>
-    <h3>Pending Requests</h3>
-    <% @arr.each do |space|%>
-    <h4><%= space.name.upcase%></h4>
-    <h4><%= @selected_date%></h4><br>
-    <%end%>
-    </div>
 
-    <form action='/confirmations' method = 'POST'>
+    <form action='/confirmations/<%=@space.id%>' method = 'POST'>
         <input type="submit" value='Confirm Booking' />
     </form>
 
-    <form action='/confirmations' method = 'POST'>
+    <form action='/confirmations/<%=@space.id%>' method = 'POST'>
         <input type="submit" value='Deny Booking' />
     </form>
 

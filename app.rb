@@ -164,21 +164,23 @@ class Application < Sinatra::Base
             erb :confirmations
       end
 
-      post '/confirmations' do
+      post '/confirmations/:id' do
             @repo = SpaceRepository.new
 
+            id = params[:id].to_i
             @selected_date = params[:selection]
 
-            space_id = params[:space_id].to_i
-            @space = @repo.find(space_id)
-
-            @repo.confirm_space(space_id) #Updates confirmed column to true
-
+            # space_id = params[:space_id].to_i
+            @space = @repo.find(id)
             binding.irb
-            user_id = @space.user_id.to_i
-            @user = @repo.find(user_id)
 
-            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'}
+            @repo.confirm_space(id) #Updates confirmed column to true
+
+            # binding.irb
+            # user_id = @space.user_id.to_i
+            # @user = @repo.find(user_id)
+
+            # @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'}
 
 
 
