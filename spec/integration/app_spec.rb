@@ -40,7 +40,7 @@ context 'POST /signup' do
             expect(response.body).to include '<h1> Please, sign in below </h1>'
             end 
 
-      it "creates a new user if information are valid" do
+      it "creates a new user if information is valid" do
             response = post("/signup", name: 'Mike', email: 'Mike@gmail.com', password: 'Mike1234')
             expect(response.status).to eq(302)
 
@@ -58,10 +58,33 @@ context "GET /spaces" do
 end
 
 context "GET /space/new" do
-            it "return new space page" do
-            response = get("/space/new")
-            expect(response.status).to eq 200
-            expect(response.body).to include "<h1>Create a space</h1>"
+            it "returns a new space page" do
+                  response = get("/space/new")
+                  expect(response.status).to eq 200
+                  expect(response.body).to include "<h1>Create a space</h1>"
             end
       end
+
+context "GET /confirmations" do
+      it "returns the confirmations page" do
+            response = get("/confirmations")
+            expect(response.status).to eq 200
+            expect(response.body).to include "<h2> Please confirm or deny your requests below </h2>"
+            end
+      end
+
+context "POST /confirmations" do
+      it "updates the confirmed column in the database to true when the user clicks confirm request button" do
+            response = post("/confirmations")
+            expect(response.status).to eq 200
+            end
+
+      it "the confirmed column in the database remains false when the user clicks the deny request button" do
+            response = post("/confirmations")
+            expect(response.status).to eq 200
+            end
+      end
+
+      
+
 end

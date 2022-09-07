@@ -138,4 +138,16 @@ class Application < Sinatra::Base
 
             erb :requests
       end
-      end 
+
+      get '/confirmations' do
+            erb :confirmations
+      end
+
+      post '/confirmations' do
+            @space_repo = SpaceRepository.new
+            requested = params[:requested]
+            confirmed = params[:confirmed]
+
+      end
+
+end 
