@@ -8,9 +8,11 @@ class UserRepository
   end
 
   # # returns a single record 
-  # def find(id)
-  #   # SELECT * FROM users WHERE id = $1;
-  # end
+  def find(id)
+    sql = 'SELECT * FROM users WHERE id = $1;'
+    result = DatabaseConnection.exec_params(sql,[id])
+    return users_object(result)
+  end
 
   # Adds new record to the users table
   def create(user)

@@ -3,6 +3,7 @@ require "sinatra/reloader"
 require_relative './lib/database_connection'
 require_relative './lib/space_repository'
 require_relative './lib/user_repository'
+require_relative './lib/request_repository'
 
 DatabaseConnection.connect
 
@@ -122,22 +123,33 @@ class Application < Sinatra::Base
       #requests
       get '/request_form' do
             @repo = SpaceRepository.new
-            # @space = repo.find(id)
-            selected_date = params[:selection]
             # "2022-09-09"
+      
+            @selected_date = params[:selection] # this is the selected date by the user
+            space_id = params[:space_id].to_i # this is the space the user wants to book
+            @repo.request_a_space(space_id)  # changing the requested status to true
+      
 
-            space_id = params[:space_id].to_i
-            @space = repo.find(space_id)
-            # @space.requested = 't'
-            @repo.request_a_space(space_id)
-            user_id = @space.user_id.to_i
-
-            # binding.irb
             # req = repo.all_recieved_requests(user_id)
             # space.requested = 't'
+            @space = @repo.find(space_id)
+            user_id = @space.user_id.to_i
+            @user = @repo.find(user_id)
+            # binding.irb
 
+            #find the users name
+            # if @space.user_id == @user.id 
+            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} # returns all spaces that have been requested
+            # end
+
+            @requests = RequestRepository.new
+            
+            @req_made = @requests.all_requests_made_by_user(user_id)
+            # binding.irb
+            
             erb :requests
       end
+
 
       get '/confirmations' do
             erb :confirmations
@@ -155,3 +167,4 @@ class Application < Sinatra::Base
       end
 
 end 
+

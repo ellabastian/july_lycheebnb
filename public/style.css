@@ -95,3 +95,31 @@ h2 {
     background-color: #ddd;
     color: black;
 }
+
+.requests_received {
+    width: 500px;
+    padding: 30px;
+    position: absolute;
+    top: 58%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    background: #11192E;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #BBEDEC;
+}
+
+.requests_made {
+    width: 500px;
+    padding: 30px;
+    position: absolute;
+    top: 58%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    background: #11192E;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #BBEDEC;
+}
