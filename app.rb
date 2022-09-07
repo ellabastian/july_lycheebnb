@@ -79,7 +79,8 @@ class Application < Sinatra::Base
 
             return erb :spaces
       end
-      
+
+
       # add a new space
       get '/space/new' do
             erb :space_new
@@ -107,5 +108,34 @@ class Application < Sinatra::Base
             end
 
             redirect '/spaces'
+      end
+
+      get '/space/:id' do
+            repo = SpaceRepository.new
+            id = params[:id].to_i
+            # binding.irb
+            @space = repo.find(id)
+            
+            erb :space_id
+      end
+
+      #requests
+      get '/request_form' do
+            @repo = SpaceRepository.new
+            # @space = repo.find(id)
+            selected_date = params[:selection]
+            # "2022-09-09"
+
+            space_id = params[:space_id].to_i
+            @space = repo.find(space_id)
+            # @space.requested = 't'
+            @repo.request_a_space(space_id)
+            user_id = @space.user_id.to_i
+
+            # binding.irb
+            # req = repo.all_recieved_requests(user_id)
+            # space.requested = 't'
+
+            erb :requests
       end
       end 
