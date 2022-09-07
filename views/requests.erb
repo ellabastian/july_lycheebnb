@@ -1,5 +1,34 @@
-<h1>Requests page</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title><%=@user.name%> Requests</title>
+</head>
+<body>
+    <%# nav bar %>
+    <div class="topnav">
+    <a href="/">Log out</a>
+    <a href="/spaces">Spaces</a>
+    </div>
 
-<% @repo.all.each |space|%>
-<h1><%= space.requested == true%></h1>
+  <h2>Requests page</h2>
+
+<div class='requests_received'>
+  <h3>Requests I've recieved</h3>
+  <% @arr.each do |space|%>
+  <h4><%= space.name.upcase%></h4>
+  <h4><%= space.confirmed%></h4>
+  <h4><%= @selected_date%></h4><br>
+  <%end%>
+</div>
+
+<div class='requests_made'>
+<h3>Requests I've made</h3>
+<% @req_made.each do |request|%>
+<h4><%= request.space_name%></h4>
+<h4><%= request.date_requested%></h4>
 <%end%>
+</div>
+
+  </body>
+  </html>

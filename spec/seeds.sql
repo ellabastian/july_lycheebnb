@@ -1,4 +1,4 @@
-TRUNCATE TABLE users, spaces RESTART IDENTITY;
+TRUNCATE TABLE users, spaces, requests RESTART IDENTITY;
 
 INSERT INTO users (name, email, password) VALUES
 ('test1', 'test1@email.com', 'password111'),
@@ -9,3 +9,7 @@ INSERT INTO spaces (name, description, price_per_night, available_from, availabl
 ('first', 'Amazing space', 20, '2022-09-05', '2022-09-10', false, false, 1),
 ('second', 'Wonderful space', 40, '2022-09-12', '2022-09-15', false, false, 2),
 ('third', 'Relaxing space', 20, '2022-09-17', '2022-09-25', false, false ,3);
+
+INSERT INTO requests (requested_by_name, space_name, date_requested, user_id) VALUES
+('test1', 'second', '2022-09-13', 1),
+('test3', 'second', '2022-09-12', 3);
