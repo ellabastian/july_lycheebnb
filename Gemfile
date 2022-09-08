@@ -4,6 +4,11 @@ source "https://rubygems.org"
 
 # gem "rails"
 
+group :test do
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+end
+
 gem "rspec", "~> 3.11"
 
 gem "pg", "~> 1.4"
