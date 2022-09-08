@@ -17,9 +17,9 @@ describe SpaceRepository do
       spaces_repo = SpaceRepository.new
       all_spaces = spaces_repo.all
       
-      expect(all_spaces.length).to eq(3)
-      expect(all_spaces[0].name).to eq('first')
-      expect(all_spaces[0].description).to eq('Amazing space')
+      expect(all_spaces.length).to eq(5)
+      expect(all_spaces[0].name).to eq('White House')
+      expect(all_spaces[0].description).to eq('A small nest perched in the trees, out of sight at 4 meters from the ground.')
       expect(all_spaces[0].price_per_night).to eq(20)
       expect(all_spaces[0].available_from).to eq('2022-09-05')
       expect(all_spaces[0].available_to).to eq('2022-09-10')
@@ -34,7 +34,7 @@ describe SpaceRepository do
    repo = SpaceRepository.new
    new_space = Space.new
 
-   new_space.name = 'fourth'
+   new_space.name = 'Montreal'
    new_space.description = 'good new_space'
    new_space.price_per_night = 35
    new_space.available_from = '2022-09-24'
@@ -46,14 +46,14 @@ describe SpaceRepository do
 
    all_spaces = repo.all
    # binding.irb
-   expect(all_spaces[3].name).to eq('fourth')
-   expect(all_spaces[3].description).to eq('good new_space')
-   expect(all_spaces[3].price_per_night).to eq(35)
-   expect(all_spaces[3].available_from).to eq('2022-09-24')
-   expect(all_spaces[3].available_to).to eq('2022-09-30')
+   expect(all_spaces[3].name).to eq('Montreal')
+   expect(all_spaces[3].description).to eq('A bridge house perched between a neighbourhood park and a bustling intersection.')
+   expect(all_spaces[3].price_per_night).to eq(20)
+   expect(all_spaces[3].available_from).to eq('2022-09-26')
+   expect(all_spaces[3].available_to).to eq('2022-09-28')
    expect(all_spaces[3].requested).to eq('f')
    expect(all_spaces[3].confirmed).to eq('f')
-   expect(all_spaces[3].user_id).to eq(1)
+   expect(all_spaces[3].user_id).to eq(4)
   end
  end
 end
