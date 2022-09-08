@@ -22,10 +22,10 @@
 
     <%# send email / redirect %>
     <div class='request_from_button'>
-        <form action="" method=""> 
+        <form action="/confirm_email" method="POST"> 
         <button>Confirm Request from <%=@user.email%></button><br><br>
         </form>
-        <form action="" method="">
+        <form action="/deny_email" method="POST">
         <button>Deny Request from <%=@user.email%></button>
         </form>
     </div>
