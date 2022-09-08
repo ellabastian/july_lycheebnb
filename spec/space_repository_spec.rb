@@ -56,5 +56,24 @@ describe SpaceRepository do
    expect(all_spaces[3].user_id).to eq(4)
   end
  end
+
+  describe "#all_recieved_requests" do
+    it "returns all requests recieved" do    
+        repo = SpaceRepository.new
+        user = repo.all_recieved_requests(1)
+
+        expect(user).to be
+    end
+end
+
+  describe "#request_a_space" do
+    it "updates a space request from false to true" do    
+        repo = SpaceRepository.new
+        user = repo.request_a_space(1)
+        result = repo.find(1)
+
+        expect(result.requested).to eq 't'
+      end
+  end
 end
 

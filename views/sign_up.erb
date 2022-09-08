@@ -1,16 +1,40 @@
-<%# nav bar %>
-<div class="topnav">
-<a href="/login">Login</a>
-<a href="#">About</a>
-</div>
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">About</a>
+    </li>
+</ul>
 
-<h2> Welcome to Lychee MakersBnB </h2>
+
 
 <%# sign up form %>
-<form class="box" action="/signup" method="post">
+
+<form id="sign-up" action="/signup" method="POST">
+
+  <h2> Welcome to Lychee MakersBnB </h2>
+  <br>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="name" name="name" class="form-control" id="exampleInputName" maxlength="30" autocomplete='off' placeholder="Username" required aria-describedby="emailHelp">
+  </div>  
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="20" autocomplete='off' placeholder="Email" required aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="20" placeholder="Password" required>
+  </div>
+  <button type="submit" name="signup" class="btn btn-primary">Create your account</button>
+</form>
+
+<!-- <form class="box" action="/signup" method="post">
     <h1>Signup</h1>
     <input type="text" name="name" maxlength="10" autocomplete='off' placeholder="Username" required>
     <input type="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="20" autocomplete='off' placeholder="Email" required>
     <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="20" placeholder="Password" required>
     <button type="submit" name="signup">Create your account</button>
-</form>
+</form> -->
