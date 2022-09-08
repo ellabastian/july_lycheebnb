@@ -190,14 +190,15 @@ class Application < Sinatra::Base
       end
 
       post '/confirm_email' do
+            space_name = params[:name]
+
             from = SendGrid::Email.new(email: ENV['EMAIL'])
             to = SendGrid::Email.new(email: ENV['EMAIL'])
-            subject = 'Space Confirmed'
-            content = SendGrid::Content.new(type: 'text/plain', value: 'The Space you booked has been confirmed by the owner')
+            subject = "Request for #{space_name}"
+            content = SendGrid::Content.new(type: 'text/plain', value: "The request for #{space_name} has been confirmed by the owner.")
             mail = SendGrid::Mail.new(from, subject, to, content)
 
             sg = SendGrid::API.new(api_key: ENV['KEY'])
-            p ENV['KEY']
             response = sg.client.mail._('send').post(request_body: mail.to_json)
 
             puts response.status_code
@@ -209,12 +210,14 @@ class Application < Sinatra::Base
 
 
       post '/deny_email' do
+            space_name = params[:name]
+
             from = SendGrid::Email.new(email: ENV['EMAIL'])
             to = SendGrid::Email.new(email: ENV['EMAIL'])
-            subject = 'Space Denied'
-            content = SendGrid::Content.new(type: 'text/plain', value: 'The Space you booked has been denied by the owner')
+            subject = "Request for #{space_name}"
+            content = SendGrid::Content.new(type: 'text/plain', value: "The request for #{space_name} has been denied by the owner.")
             mail = SendGrid::Mail.new(from, subject, to, content)
-            p ENV['KEY']
+            # p ENV['KEY']
 
             sg = SendGrid::API.new(api_key: ENV['KEY'])
             response = sg.client.mail._('send').post(request_body: mail.to_json)
