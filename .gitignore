@@ -1,6 +1,4 @@
-# .gitignore
-# .rspec
-# Gemfile
-# Gemfile.lock
-# spec/
 .env
+/**/.DS_Store
+/coverage
+.rubocop-*
