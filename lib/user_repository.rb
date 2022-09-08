@@ -11,7 +11,7 @@ class UserRepository
   def find(id)
     sql = 'SELECT * FROM users WHERE id = $1;'
     result = DatabaseConnection.exec_params(sql,[id])
-    return users_object(result)
+    return users_object(result)[0]
   end
 
   # Adds new record to the users table
