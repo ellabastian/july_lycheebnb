@@ -46,6 +46,11 @@ h3 {
     background-color: #B9D6F2;
 }
 
+.date {
+    padding-top: 5%;
+    font-size: medium;
+}
+
 #sign-up {  
     padding: 0.1%;
     margin: 10%;

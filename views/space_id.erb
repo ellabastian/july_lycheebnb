@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<h1><%=@space.name%></h1>
+<!-- <h1><%=@space.name%></h1>
 <h2><%=@space.description%></h2>
 
 <form action='/request_form' method='get'>
@@ -19,4 +19,20 @@
 <input type='date' name='selection' min='<%=@space.available_from%>' max='<%=@space.available_to%>' >
     <input type='hidden' name='space_id' value=<%=@space.id%>>
     <button>Request to book</button>
-</form>
+</form> -->
+
+<div class="card">   
+<h2 class="card-header"><%=@space.name%></h2>
+<div class="card-body">
+  <h4 class="card-title"><%=@space.description%></h4>
+<div class="date">
+  <form action='/request_form' method='get'>
+  <h5>Pick a night</h5>
+  <label for='selection'>
+  <input type='date' name='selection' min='<%=@space.available_from%>' max='<%=@space.available_to%>' >
+      <input type='hidden' name='space_id' value=<%=@space.id%>>
+      <button class="btn btn-primary">Request to book</button>
+  </form>
+</div>
+</div>
+</div>
