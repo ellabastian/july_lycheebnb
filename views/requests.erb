@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="icon.png">
-    <title><%=@user.name%> Requests</title>
-</head>
-<body>
+
     <%# nav bar %>
     <div class="topnav">
     <a href="/">Log out</a>
@@ -20,7 +13,7 @@
   <h4><%= space.name.upcase%></h4>
   <h4><%= space.confirmed%></h4>
   <h4><%= @selected_date%></h4>
-  <form action='/request_form-<%=space.id%>' method='get'>
+  <form action='/request_form/<%=space.id%>' method='get'>
   <button>Confirmation Page</button>
   </form><br>
   <%end%>
@@ -35,6 +28,3 @@
 <br>
 <%end%>
 </div>
-
-  </body>
-  </html>

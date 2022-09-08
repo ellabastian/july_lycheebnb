@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="icon.png">
-    <title>Requests</title>
-</head>
-<body>
     <%# nav bar %>
     <div class="topnav">
     <a href="/login">Sign out</a>
@@ -21,10 +13,10 @@
     <div class='request_from'>
         <h3>Other requests for this space<h3>
         <% @space_repo.all.each do |space| %>
-        <form action='/request_form-<%= space.id%>' method="GET">
+        <!-- <form action='/request_form/<%= space.id%>'> -->
         <h3><%=space.name.capitalize%></h3>
-        <button>Check Request</button>
-        </form>
+        <a href='/request_form/<%= space.id%>'><button>Check Request</button></a>
+        <%# </form> %>
         <%end%>
     </div>
 
@@ -37,5 +29,3 @@
         <button>Deny Request from <%=@user.email%></button>
         </form>
     </div>
-</body>
-</html>

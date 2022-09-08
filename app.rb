@@ -16,9 +16,10 @@ class Application < Sinatra::Base
 
       enable :sessions
 
+
       # Sign up pages
       get '/' do
-            erb :sign_up
+            erb :sign_up, :layout => :layout
       end 
 
       post '/signup' do 
@@ -52,7 +53,7 @@ class Application < Sinatra::Base
 
       # login pages
       get '/login' do
-            erb :login
+            erb :login, :layout => :layout
       end 
 
       post '/login' do
@@ -65,7 +66,7 @@ class Application < Sinatra::Base
             # login fails if email doesnt exists in database
             @user = @user_repo.find_user_by_email(email)
             if @user == nil
-                  return  erb :login_failed
+                  return  erb :login_failed, :layout => :layout
             end
 
             # login fails if password doesnt match
@@ -73,20 +74,20 @@ class Application < Sinatra::Base
                   return erb :login_failed
             end
             
-            erb :spaces
+            erb :spaces, :layout => :layout
       end
 
       # list all spaces
       get '/spaces' do
             @space_repo = SpaceRepository.new
 
-            return erb :spaces
+            return erb :spaces, :layout => :layout
       end
 
 
       # add a new space
       get '/space/new' do
-            erb :space_new
+            erb :space_new, :layout => :layout
       end
 
       post '/space/new' do
@@ -119,7 +120,7 @@ class Application < Sinatra::Base
             # binding.irb
             @space = repo.find(id)
             
-            erb :space_id
+            erb :space_id, :layout => :layout
       end
 
       #requests
@@ -134,7 +135,7 @@ class Application < Sinatra::Base
             @space_class = Space.new
 
             if @space_class.array.include?(@selected_date)
-                  return erb :date_exists
+                  return erb :date_exists, :layout => :layout
             end
 
             p @space_class.array.inspect
@@ -167,10 +168,10 @@ class Application < Sinatra::Base
             @req_made = @requests.all_requests_made_by_user(user_id)
             # binding.irb
             
-            erb :requests
+            erb :requests, :layout => :layout
       end
 
-      get '/request_form-:id' do
+      get '/request_form/:id' do
             @space_repo = SpaceRepository.new
             id = params[:id].to_i
             @space = @space_repo.find(id)
@@ -180,7 +181,7 @@ class Application < Sinatra::Base
             user_id = @space.user_id.to_i
             @user = @user_repo.find(user_id)
 
-            erb :confirmation
+            erb :confirmation, :layout => :layout
       end
 end 
 
