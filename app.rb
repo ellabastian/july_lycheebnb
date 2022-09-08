@@ -164,7 +164,7 @@ class Application < Sinatra::Base
             #find the users name
             # if @space.user_id == @user.id 
             # binding.irb
-            # @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
+            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
             # returns all spaces that have been requested
             # end
 
