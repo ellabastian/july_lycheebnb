@@ -1,9 +1,14 @@
+require 'sendgrid-ruby'
+include SendGrid
+require 'dotenv'
+Dotenv.load
 require 'sinatra/base'
 require "sinatra/reloader"
 require_relative './lib/database_connection'
 require_relative './lib/space_repository'
 require_relative './lib/user_repository'
 require_relative './lib/request_repository'
+
 
 DatabaseConnection.connect
 
@@ -182,6 +187,43 @@ class Application < Sinatra::Base
             @user = @user_repo.find(user_id)
 
             erb :confirmation, :layout => :layout
+      end
+
+      post '/confirm_email' do
+            from = SendGrid::Email.new(email: ENV['EMAIL'])
+            to = SendGrid::Email.new(email: ENV['EMAIL'])
+            subject = 'Space Confirmed'
+            content = SendGrid::Content.new(type: 'text/plain', value: 'The Space you booked has been confirmed by the owner')
+            mail = SendGrid::Mail.new(from, subject, to, content)
+
+            sg = SendGrid::API.new(api_key: ENV['KEY'])
+            p ENV['KEY']
+            response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+            puts response.status_code
+            puts response.body
+            puts response.headers
+
+            erb :request_confirmed, :layout => :layout
+      end
+
+
+      post '/deny_email' do
+            from = SendGrid::Email.new(email: ENV['EMAIL'])
+            to = SendGrid::Email.new(email: ENV['EMAIL'])
+            subject = 'Space Denied'
+            content = SendGrid::Content.new(type: 'text/plain', value: 'The Space you booked has been denied by the owner')
+            mail = SendGrid::Mail.new(from, subject, to, content)
+            p ENV['KEY']
+
+            sg = SendGrid::API.new(api_key: ENV['KEY'])
+            response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+            puts response.status_code
+            puts response.body
+            puts response.headers
+
+            erb :request_denied,  :layout => :layout
       end
 end 
 
