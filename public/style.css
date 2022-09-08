@@ -123,3 +123,55 @@ h2 {
     border-radius: 10px;
     border: 2px solid #BBEDEC;
 }
+
+.request_from {
+    color: white ;
+    margin: auto;
+    width: 30%;
+    border: 3px solid rgb(255, 255, 255);
+    padding: 10px;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+}
+
+.request_from h3 {
+    padding: 10px;
+    text-align: center;
+}
+
+.request_from_button {
+    position: absolute;
+    margin: auto;
+    width: 40%;
+    right: 30%;
+    bottom: 10%;
+    border: 3px solid rgb(255, 255, 255);
+    padding: 10px;
+    text-align:left;
+    font-family:'Courier New', Courier, monospace;
+    text-decoration: none;
+}
+
+.request_from_button button  {
+    display: block;
+    width: 100%;
+    border: none;
+    color: rgb(4, 4, 4);
+    background-color: #00e6fb;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.request_from_button button:hover {
+    background-color: #00ff2f;
+}
+
+#request_from_h3 {
+    color: #BBEDEC;
+    position: absolute;
+    top: 10%;
+    left: 41%;
+}
