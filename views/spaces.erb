@@ -1,19 +1,25 @@
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+  <a class="nav-link" href="/spaces">Spaces</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="/">Sign out</a>
+  </li>
+</ul>
 
-    <div class="topnav">
-    <a href="/">Sign out</a>
-    <a href="/spaces">Spaces</a>
-    </div>
-
-    <h1> Welcome to Lychee MakersBnB </h1>
+    
+  <div id="spaces">
+    <h2> Welcome to Lychee MakersBnB </h2>
     
     <p> Below you will find a selection of spaces you can book.
     Press on the "List a Space" button to list your own space</p>
-
-    <h2> Book a Space </h2>
+  <!-- </div>
+  <div id="spaces-booking"> -->
+    <h3> Book a Space </h3>
   
       <a href='/space/new'>List a space </a>
 
-    <h2> Choose a date to book </h2>
+    <h3> Choose a date to book </h3>
 
     <form action='/filter' method='get'>
             <p> Filter by available night: </p>
@@ -21,11 +27,16 @@
             <button>Filter</button>
     </form>
 
-      <% @space_repo.all.each do |space| %>
-      <h1><%=space.name%></h1>
-      <h2><%=space.description%></h2>
-      <form action='space/<%= space.id%>' method="GET">
-          <button>Booking Page</button>
-      </form>
-      <%end%>  
+      <div class="card">
+        <% @space_repo.all.each do |space| %>
+        <h3 class="card-header"><%=space.id%></h3>
+        <div class="card-body">
+          <h4 class="card-title"><%=space.name%></h4>
+          <p class="card-text"><%=space.description%></p>
+          <form action='space/<%= space.id%>' method="GET">
+            <button class="btn btn-primary">Booking Page</button>
+          </form>
+        </div>
+        <%end%>
+      </div>
 
