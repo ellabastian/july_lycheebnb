@@ -42,7 +42,7 @@ context 'POST /signup' do
 
       it "creates a new user if information is valid" do
             response = post("/signup", name: 'George', email: 'George@gmail.com', password: 'George11')
-            expect(response.status).to eq(200)
+            expect(response.status).to eq(302)
 
             response = get('/spaces')
             expect(response.body).to include '<h2> Book a Space </h2>'
