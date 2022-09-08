@@ -140,7 +140,7 @@ class Application < Sinatra::Base
             @space_class = Space.new
 
             if @space_class.array.include?(@selected_date)
-                  return erb :date_exists, :layout => :layout
+                  # return erb :date_exists, :layout => :layout
             end
 
             p @space_class.array.inspect
@@ -164,7 +164,7 @@ class Application < Sinatra::Base
             #find the users name
             # if @space.user_id == @user.id 
             # binding.irb
-            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
+            # @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
             # returns all spaces that have been requested
             # end
 
@@ -227,6 +227,16 @@ class Application < Sinatra::Base
             puts response.headers
 
             erb :request_denied,  :layout => :layout
+      end
+
+      # filter spaces by avaliable night
+      get '/filter' do
+            @repo = SpaceRepository.new
+            date = params[:filter]
+
+            # binding.irb
+
+            @spaces = @repo.all.filter {|space|  }
       end
 end 
 
