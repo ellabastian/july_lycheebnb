@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.png">
     <title><%=@user.name%> Requests</title>
 </head>
 <body>
@@ -19,9 +20,9 @@
   <h4><%= space.name.upcase%></h4>
   <h4><%= space.confirmed%></h4>
   <h4><%= @selected_date%></h4>
-  <form action='/confirmations' method='get'>
-   <button>Confirmation Page</button>
- </form><br>
+  <form action='/request_form-<%=space.id%>' method='get'>
+  <button>Confirmation Page</button>
+  </form><br>
   <%end%>
 </div>
 
