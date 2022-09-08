@@ -15,11 +15,11 @@
 
     <h2> Choose a date to book </h2>
 
-    <form action='/space/new' method='POST'>
-            <p> Start date </p>
-            <input type="text" name="booking_start_date">
-            <input type="submit" value='See available space'/>
-      </form>
+    <form action='/filter' method='get'>
+            <p> Filter by available night: </p>
+            <input type="date" name="filter">
+            <button>Filter</button>
+    </form>
 
       <% @space_repo.all.each do |space| %>
       <h1><%=space.name%></h1>
