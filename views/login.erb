@@ -1,16 +1,15 @@
 
+    <%# nav bar %>
+    <div class="topnav">
+    <a href="/">Signup</a>
+    <a href="#">About</a>
+    </div>
 
-    <h1> Please, sign in below </h1>
-    <form action="/login" method="POST">
-      <div>
-            <p> Enter your email </p>
-            <input type="text" name="email">
-      </div>
+    <h2>Please, sign in below</h2>
 
-      <div>
-            <p> Enter your password </p>
-            <input type="text" name="password">
-      </div>
-
-      <input type="submit" value="Log in">
+    <form class="box" action="/login" method="post">
+        <h1>Login</h1>
+        <input type="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="20" autocomplete='off' placeholder="Email" required>
+        <input type="password" name="password" maxlength="20"autocomplete='off' placeholder="Password" required>
+        <button>Login</button>
     </form>
