@@ -14,6 +14,8 @@ class Application < Sinatra::Base
             also_reload 'lib/user_repository'
       end
 
+      enable :sessions
+
       # Sign up pages
       get '/' do
             erb :sign_up
@@ -123,16 +125,24 @@ class Application < Sinatra::Base
       #requests
       get '/request_form' do
             @repo = SpaceRepository.new
+            @user_repo = UserRepository.new
+            
             # "2022-09-09"
-      
             @selected_date = params[:selection] # this is the selected date by the user
-            if @repo.bookings.include?(@selected_date)
-              return erb :date_exists
-            else
-            #@repo.bookings << @selected_date
+
+            # session[:booking] = []
+            @space_class = Space.new
+
+            if @space_class.array.include?(@selected_date)
+                  return erb :date_exists
             end
+
+            p @space_class.array.inspect
+            # store these dates in the database 
+            @space_class.array << @selected_date
+            p @space_class.array.inspect
+
             # binding.irb
-            #if arr_of_bookings.include?(@selected_date)
             # arr_of_bookings = @space_class.bookings
 
             space_id = params[:space_id].to_i # this is the space the user wants to book
@@ -143,12 +153,13 @@ class Application < Sinatra::Base
             # space.requested = 't'
             @space = @repo.find(space_id)
             user_id = @space.user_id.to_i
-            @user = @repo.find(user_id)
-            # binding.irb
-
+            @user = @user_repo.find(user_id)
+            
             #find the users name
             # if @space.user_id == @user.id 
-            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} # returns all spaces that have been requested
+            # binding.irb
+            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
+            # returns all spaces that have been requested
             # end
 
             @requests = RequestRepository.new
@@ -159,24 +170,17 @@ class Application < Sinatra::Base
             erb :requests
       end
 
-
-      get '/confirmations' do
-            erb :confirmations
-      end
-
-      post '/confirmations' do
+      get '/request_form-:id' do
             @space_repo = SpaceRepository.new
-            requested = params[:requested]
-            confirmed = params[:confirmed]
+            id = params[:id].to_i
+            @space = @space_repo.find(id)
 
+            # finding user
+            @user_repo = UserRepository.new
+            user_id = @space.user_id.to_i
+            @user = @user_repo.find(user_id)
+
+            erb :confirmation
       end
-
-      private
-
-      def bookings
-        date_bookings = []
-        return date_bookings
-      end
-
 end 
 
