@@ -228,5 +228,15 @@ class Application < Sinatra::Base
 
             erb :request_denied,  :layout => :layout
       end
+
+      # filter spaces by avaliable night
+      get '/filter' do
+            @repo = SpaceRepository.new
+            date = params[:filter]
+
+            # binding.irb
+
+            @spaces = @repo.all.filter {|space|  }
+      end
 end 
 
