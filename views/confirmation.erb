@@ -1,9 +1,14 @@
-    <%# nav bar %>
-    <div class="topnav">
-    <a href="/login">Sign out</a>
-    <%# <a href="#">Requests</a> %>
-    <a href="/spaces">Spaces</a>
-    </div>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+        <a class="nav-link" href="/request_form">Requests</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/spaces">Spaces</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/">Sign out</a>
+        </li>
+    </ul>
 
     <h2>Request for <%= @space.name.capitalize%></h2>
 

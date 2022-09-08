@@ -1,16 +1,22 @@
+<ul class="nav justify-content-end">
+    <li class="nav-item">
+    <a class="nav-link" href="/">Sign Up</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">About</a>
+    </li>
+</ul>
 
+<h2> Please, sign in below </h2>
 
-    <h1> Please, sign in below </h1>
-    <form action="/login" method="POST">
-      <div>
-            <p> Enter your email </p>
-            <input type="text" name="email">
-      </div>
-
-      <div>
-            <p> Enter your password </p>
-            <input type="text" name="password">
-      </div>
-
-      <input type="submit" value="Log in">
-    </form>
+<form id="login" action="/login" method="POST">  
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" maxlength="20" autocomplete='off' placeholder="Email" required aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="20" placeholder="Password" required>
+  </div>
+  <button type="submit" name="signup" class="btn btn-primary">Login</button>
+</form>
