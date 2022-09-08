@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.png">
+    <title>Requests</title>
+</head>
+<body>
+    <%# nav bar %>
+    <div class="topnav">
+    <a href="/login">Sign out</a>
+    <%# <a href="#">Requests</a> %>
+    <a href="/spaces">Spaces</a>
+    </div>
+
+    <h2>Request for <%= @space.name.capitalize%></h2>
+
+    <h3 id='request_from_h3'>From: <%=@user.email%></h3>
+
+    <%# all spaces %>
+    <div class='request_from'>
+        <h3>Other requests for this space<h3>
+        <% @space_repo.all.each do |space| %>
+        <form action='/request_form-<%= space.id%>' method="GET">
+        <h3><%=space.name.capitalize%></h3>
+        <button>Check Request</button>
+        </form>
+        <%end%>
+    </div>
+
+    <%# send email / redirect %>
+    <div class='request_from_button'>
+        <form action="" method=""> 
+        <button>Confirm Request from <%=@user.email%></button><br><br>
+        </form>
+        <form action="" method="">
+        <button>Deny Request from <%=@user.email%></button>
+        </form>
+    </div>
+</body>
+</html>
