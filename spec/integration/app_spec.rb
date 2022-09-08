@@ -21,7 +21,7 @@ context 'GET /login' do
             response = get('/login')
 
             expect(response.status).to eq(200)
-            expect(response.body).to include "<h1> Please, sign in below </h1>"
+            expect(response.body).to include "<h2>Please, sign in below</h2>"
       end 
 end 
 
@@ -35,14 +35,14 @@ end
 
 context 'POST /signup' do
       it "redirects user to login page if email address exists" do
-            response = post('/signup', name: 'newuser', email: 'test1@email.com', password: 'password1')
+            response = post('/signup', name: 'Testing', email: 'Mike@email.com', password: 'Password11')
             expect(response.status).to eq(200)
-            expect(response.body).to include '<h1> Please, sign in below </h1>'
+            expect(response.body).to include '<h2>Please, sign in below</h2>'
             end 
 
       it "creates a new user if information is valid" do
-            response = post("/signup", name: 'Mike', email: 'Mike@gmail.com', password: 'Mike1234')
-            expect(response.status).to eq(302)
+            response = post("/signup", name: 'George', email: 'George@gmail.com', password: 'George11')
+            expect(response.status).to eq(200)
 
             response = get('/spaces')
             expect(response.body).to include '<h2> Book a Space </h2>'
@@ -69,8 +69,7 @@ context "GET /confirmation" do
       it "returns the confirmations page" do
             response = get('/request_form/2')
             expect(response.status).to eq 200
-            expect(response.body).to include "<h3 id='request_from_h3'>From: test2@email.com</h3>"
+            expect(response.body).to include "<h3 id='request_from_h3'>From: David@email.com</h3>"
             end
       end
-
 end
