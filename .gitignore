@@ -2,3 +2,5 @@
 /**/.DS_Store
 /coverage
 .rubocop-*
+.resultset.json
+.index.html
