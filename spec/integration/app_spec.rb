@@ -21,7 +21,7 @@ context 'GET /login' do
             response = get('/login')
 
             expect(response.status).to eq(200)
-            expect(response.body).to include "<h2>Please, sign in below</h2>"
+            expect(response.body).to include "<h2> Please, sign in below </h2>"
       end 
 end 
 
@@ -37,7 +37,7 @@ context 'POST /signup' do
       it "redirects user to login page if email address exists" do
             response = post('/signup', name: 'Testing', email: 'Mike@email.com', password: 'Password11')
             expect(response.status).to eq(200)
-            expect(response.body).to include '<h2>Please, sign in below</h2>'
+            expect(response.body).to include '<h2> Please, sign in below </h2>'
             end 
 
       it "creates a new user if information is valid" do
@@ -45,7 +45,7 @@ context 'POST /signup' do
             expect(response.status).to eq(302)
 
             response = get('/spaces')
-            expect(response.body).to include '<h2> Book a Space </h2>'
+            expect(response.body).to include '<h3> Book a Space </h3>'
             end 
       end
 
@@ -53,7 +53,7 @@ context "GET /spaces" do
       it "returns a list of all spaces" do
             response = get("/spaces")
             expect(response.status).to eq (200)
-            expect(response.body).to include ('<h2> Choose a date to book </h2>')
+            expect(response.body).to include ('<h3> Choose a date to book </h3>')
       end
 end
 
