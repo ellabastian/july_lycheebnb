@@ -2,12 +2,6 @@ require_relative './space.rb'
 
 class SpaceRepository
 
- attr_accessor :bookings
-  
-  def initialize
-    self.bookings = []
-  end
-
   # Selecting all spaces
   def all
     sql =  'SELECT * FROM spaces WHERE confirmed = false;'
@@ -40,8 +34,6 @@ class SpaceRepository
     DatabaseConnection.exec_params(sql,params)
   end
 
-  
-  
     private 
 
   def space_object(result)
