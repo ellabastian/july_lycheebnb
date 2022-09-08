@@ -65,26 +65,12 @@ context "GET /space/new" do
             end
       end
 
-context "GET /confirmations" do
+context "GET /confirmation" do
       it "returns the confirmations page" do
-            response = get("/confirmations")
+            response = get('/request_form/2')
             expect(response.status).to eq 200
-            expect(response.body).to include "<h3> Please confirm or deny your requests below </h3>"
+            expect(response.body).to include "<h3 id='request_from_h3'>From: test2@email.com</h3>"
             end
       end
-
-context "POST /confirmations" do
-      it "updates the confirmed column in the database to true when the user clicks confirm request button" do
-            response = post("/confirmations")
-            expect(response.status).to eq 200
-            end
-
-      it "the confirmed column in the database remains false when the user clicks the deny request button" do
-            response = post("/confirmations")
-            expect(response.status).to eq 200
-            end
-      end
-
-      
 
 end
