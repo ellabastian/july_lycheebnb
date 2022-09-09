@@ -1,6 +1,6 @@
 <ul class="nav justify-content-end">
     <li class="nav-item">
-    <a class="nav-link" href="/request_form">Requests</a>
+    <a class="nav-link" href="#">Requests</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="/spaces">Spaces</a>
@@ -9,6 +9,24 @@
     <a class="nav-link" href="/">Sign out</a>
     </li>
 </ul>
+
+<div class="container" style="margin: 5% 25%;width:55%;" >
+  <div class="row">
+    <div class="col-md-12">
+            <h3><%= @space.name %></h3><br>
+            <p><%= @space.description %></p><br>
+            
+            <p style="font-style:oblique;font-weight: bold;"> This space is available:</p>
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col" style="color:gray;">
+                    </div>
+                    <div class="col" style="color:gray;">
+                    </div>
+                    
+                </div>
+            </div>
 
 <!-- <h1><%=@space.name%></h1>
 <h2><%=@space.description%></h2>
@@ -22,17 +40,16 @@
 </form> -->
 
 <div class="card">   
-<h2 class="card-header"><%=@space.name%></h2>
-<div class="card-body">
-  <h4 class="card-title"><%=@space.description%></h4>
-<div class="date">
-  <form action='/request_form' method='get'>
-  <h5>Pick a night</h5>
-  <label for='selection'>
-  <input type='date' name='selection' min='<%=@space.available_from%>' max='<%=@space.available_to%>' >
+      <form action='/request_form' method='get'>
+      <h5>Pick a night:</h5>
+      <label for='selection'>
+      <input type='date' name='selection' min='<%=@space.available_from%>' max='<%=@space.available_to%>' class="form-control"  required> 
+      <br>
       <input type='hidden' name='space_id' value=<%=@space.id%>>
       <button class="btn btn-primary">Request to book</button>
-  </form>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
