@@ -69,7 +69,7 @@ context "GET /confirmation" do
       it "returns the confirmations page" do
             response = get('/request_form/2')
             expect(response.status).to eq 200
-            expect(response.body).to include "<h3 id='request_from_h3'>From: David@email.com</h3>"
+            expect(response.body).to include "<h4 id='request_from_h3'>From: David@email.com</h4>"
             end
       end
 
@@ -121,7 +121,7 @@ context "get /request_form" do
             it "returns a list of all requests recieved and made" do
             response = get('/request_form', selected_date: '2022-09-09', space_id: 2)
             expect(response.status).to eq (200)
-            expect(response.body).to include "<h2>Requests I've recieved</h2>"
+            expect(response.body).to include '<h2 id ="colour">Requests I\'ve recieved</h2>'
             end
       end
 
@@ -145,7 +145,7 @@ context "get /filter" do
             it "should return all spaces that are available to be requested within that date range" do
             response = get('/filter', available_from:'2022-09-12', available_to: '2022-09-15')
             expect(response.status).to eq (200)
-            expect(response.body).to include '<h4 class="card-title">Buckingham Palace</h4>'
+            expect(response.body).to include '<h3 class="card-title">Buckingham Palace</h3>'
             end
 
             it "should redirect user to spaces if date inputs are empty" do
