@@ -63,7 +63,8 @@ class Application < Sinatra::Base
 
       post '/login' do
             @user_repo = UserRepository.new
-            @space_repo = SpaceRepository.new
+            @spaces = SpaceRepository.new
+            @space_repo = @spaces.all
 
             email = params[:email]
             password = params[:password]
@@ -84,7 +85,8 @@ class Application < Sinatra::Base
 
       # list all spaces
       get '/spaces' do
-            @space_repo = SpaceRepository.new
+            @spaces = SpaceRepository.new
+            @space_repo = @spaces.all
 
             return erb :spaces, :layout => :layout
       end
@@ -132,19 +134,16 @@ class Application < Sinatra::Base
       get '/request_form' do
             @repo = SpaceRepository.new
             @user_repo = UserRepository.new
-            
-            # "2022-09-09"
-            @selected_date = params[:selection] # this is the selected date by the user
+            @selected_date = params[:selection] # this is the selected date by the user  "2022-09-09"
 
             # session[:booking] = []
             @space_class = Space.new
-
             if @space_class.array.include?(@selected_date)
                   # return erb :date_exists, :layout => :layout
             end
 
-            p @space_class.array.inspect
             # store these dates in the database 
+            p @space_class.array.inspect
             @space_class.array << @selected_date
             p @space_class.array.inspect
 
@@ -156,22 +155,15 @@ class Application < Sinatra::Base
       
             #binding.irb
             # req = repo.all_recieved_requests(user_id)
-            # space.requested = 't'
             @space = @repo.find(space_id)
             user_id = @space.user_id.to_i
             @user = @user_repo.find(user_id)
             
-            #find the users name
-            # if @space.user_id == @user.id 
-            # binding.irb
-            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
             # returns all spaces that have been requested
-            # end
-
-            @requests = RequestRepository.new
+            @arr = @repo.all.filter {|space| space.user_id == @user.id && space.requested == 't'} 
             
+            @requests = RequestRepository.new
             @req_made = @requests.all_requests_made_by_user(user_id)
-            # binding.irb
             
             erb :requests, :layout => :layout
       end
@@ -208,7 +200,7 @@ class Application < Sinatra::Base
             erb :request_confirmed, :layout => :layout
       end
 
-
+      
       post '/deny_email' do
             space_name = params[:name]
 
@@ -229,14 +221,23 @@ class Application < Sinatra::Base
             erb :request_denied,  :layout => :layout
       end
 
-      # filter spaces by avaliable night
+      # filter spaces by avaliable dates
       get '/filter' do
             @repo = SpaceRepository.new
-            date = params[:filter]
-
+            available_from = params[:available_from]
+            available_to = params[:available_to]
             # binding.irb
+            if available_from.empty? && available_to.empty? 
+                  redirect '/spaces'
+            end
 
-            @spaces = @repo.all.filter {|space|  }
+            @space_repo = @repo.filter_spaces(available_from,available_to)
+            erb :spaces, :layout => :layout
+      end
+
+      # about page
+      get '/about' do
+            erb :about
       end
 end 
 
