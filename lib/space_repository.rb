@@ -34,6 +34,12 @@ class SpaceRepository
     DatabaseConnection.exec_params(sql,params)
   end
 
+  def filter_spaces(available_from,available_to)
+    sql = 'SELECT * FROM spaces WHERE available_from <= $1 AND available_to >= $2;'
+    result = DatabaseConnection.exec_params(sql,[available_from, available_to])
+    return space_object(result)
+  end
+
     private 
 
   def space_object(result)
