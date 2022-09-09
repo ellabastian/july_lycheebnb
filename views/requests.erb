@@ -10,24 +10,35 @@
 
 <h3 class="title" style="text-align: center;margin: 3rem 0;"> Requests </h3>
 
-<div class='requests_received'>
-  <h2>Requests I've recieved</h2>
-  <% @arr.each do |space|%>
-  <h3><%= space.name.upcase%></h3>
-  <h3><%= space.confirmed%></h3>
-  <h3><%= @selected_date%></h3>
-  <form action='/request_form/<%=space.id%>' method='get'>
-  <button class="btn btn-default">Confirmation Page</button>
-  </form><br>
-  <%end%>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" id="requests-box">
+      <h2 id ="colour">Requests I've recieved</h2>
+      <div class="card-body" id="requests-body">
+       <% @arr.each do |space|%>
+        <h3 class="card-title" id ="colour"><%= space.name.upcase%></h3>
+        <p class="card-text" id ="colour"><%= @selected_date%></p>
+        <form action='/request_form/<%=space.id%>' method='get' id ="colour">
+            <button class="btn btn-primary" id ="colour">Confirmation Page</button>
+        </form><br>
+      <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card" id="requests-box">
+    <h2 id ="colour">Requests I've made</h2>
+    <div class="card-body" id="requests-body">
+    <% @req_made.each do |request|%>
+      <h3 class="card-title" id ="colour"><%= request.space_name%></h3>
+      <p class="card-text" id ="colour"><%= request.date_requested%></p>
+      <p class="card-text" id ="colour">Not confirmed</p>
+      <br>
+    <%end%>
+    </div>
+    </div>
+  </div>
 </div>
 
-<div class='requests_made'>
-<h2>Requests I've made</h2>
-<% @req_made.each do |request|%>
-<h3><%= request.space_name%></h3>
-<h3><%= request.date_requested%></h3>
-<h3>Not Confirmed<h3>
-<br>
-<%end%>
-</div>
+
