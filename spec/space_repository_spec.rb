@@ -75,5 +75,13 @@ end
         expect(result.requested).to eq 't'
       end
   end
+
+  describe "#filter_spaces" do
+    it "returns all spaces that are within that date range" do    
+        repo = SpaceRepository.new
+        filter = repo.filter_spaces("2022-09-12", "2022-09-28")
+        expect(filter).to be
+    end
+end
 end
 
