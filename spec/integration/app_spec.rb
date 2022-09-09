@@ -12,7 +12,7 @@ context 'GET /' do
             response = get('/')
 
             expect(response.status).to eq(200)
-            expect(response.body).to include "<h2> Welcome to Lychee MakersBnB </h2>"
+            expect(response.body).to include '<h1 style="text-align: center;">  Welcome to Lychee MakersBnB</h1>'
       end 
 end 
 
@@ -45,7 +45,7 @@ context 'POST /signup' do
             expect(response.status).to eq(302)
 
             response = get('/spaces')
-            expect(response.body).to include '<h3> Book a Space </h3>'
+            expect(response.body).to include '<h4> Filter by available dates: </h4>'
             end 
       end
 
@@ -53,7 +53,7 @@ context "GET /spaces" do
       it "returns a list of all spaces" do
             response = get("/spaces")
             expect(response.status).to eq (200)
-            expect(response.body).to include ('<h3> Choose a date to book </h3>')
+            expect(response.body).to include ('<h2> Welcome to Lychee MakersBnB </h2>')
       end
 end
 
@@ -61,7 +61,7 @@ context "GET /space/new" do
             it "returns a new space page" do
                   response = get("/space/new")
                   expect(response.status).to eq 200
-                  expect(response.body).to include "<h1>Create a space</h1>"
+                  expect(response.body).to include "<h3>Create A Space</h3>"
             end
       end
 
@@ -95,6 +95,7 @@ context "post /login" do
       it "fails if the user's password doesnt match the one stored in the database" do
       response = post('/login', email: 'David@email.com', password: 'Password221')
       expect(response.status).to eq (200)
+      expect(response.body).to include '<h2>Login failed</h2>'
       end
 end
 
@@ -111,14 +112,16 @@ context "get /space/:id" do
             it "returns the correct space page" do
             response = get('/space/2', name: 'Buckingham Palace', description: 'Discover the magical world of the Palace, unique in England.', price_per_night: 40, available_from: '2022-09-12', available_to: '2022-09-15', confirmed: 'f', requested: 'f')
             expect(response.status).to eq (200)
+            expect(response.body).to include '<h3>Buckingham Palace</h3><br>'
             end
       end
 
 
 context "get /request_form" do
-            xit "returns a list of all requests recieved and made" do
-            response = get('/request_form')
+            it "returns a list of all requests recieved and made" do
+            response = get('/request_form', selected_date: '2022-09-09', space_id: 2)
             expect(response.status).to eq (200)
+            expect(response.body).to include "<h2>Requests I've recieved</h2>"
             end
       end
 
@@ -133,6 +136,29 @@ context "post /deny_email" do
             it "should send the user an email and redirect the owner to a confirmation page" do
             response = post('/deny_email')
             expect(response.status).to eq (200)
+            expect(response.body).to include '<h3 class="title" style="text-align: center;margin: 3rem 0;"> The user has now been notified that you denied their request to book this space</h3>'
+            end
+      end
+
+
+context "get /filter" do
+            it "should return all spaces that are available to be requested within that date range" do
+            response = get('/filter', available_from:'2022-09-12', available_to: '2022-09-15')
+            expect(response.status).to eq (200)
+            expect(response.body).to include '<h4 class="card-title">Buckingham Palace</h4>'
+            end
+
+            it "should redirect user to spaces if date inputs are empty" do
+            response = get('/filter', available_from:'', available_to: '')
+            expect(response.status).to eq (302)
+            end
+      end
+
+context "get /about" do
+            it "should return the about page" do
+            response = get('/about')
+            expect(response.status).to eq (200)
+            expect(response.body).to include '<header class="w3-center"><p style="font-size: 38px; font-weight: 700;">LycheeBnB</p></header>'
             end
       end
 end
