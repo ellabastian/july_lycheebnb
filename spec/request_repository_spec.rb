@@ -19,7 +19,7 @@ describe RequestRepository do
       
       expect(all_requests.length).to eq(4)
       expect(all_requests[0].requested_by_name).to eq('Jake')
-      expect(all_requests[0].space_name).to eq('Buckingham Palace')
+      expect(all_requests[0].space_name).to eq('Somerset House')
       expect(all_requests[0].date_requested).to eq('2022-09-09')
       expect(all_requests[0].user_id).to eq(1)
     end
@@ -32,7 +32,7 @@ describe RequestRepository do
          user = repo.all_requests_made_by_user(3)
 
          expect(user[0].requested_by_name).to eq("Mike")
-         expect(user[0].space_name).to eq("Buckingham Palace")
+         expect(user[0].space_name).to eq("Somerset House")
          expect(user[0].date_requested).to eq("2022-09-12")
      end
 end

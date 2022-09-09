@@ -110,9 +110,9 @@ context "post /space/new" do
 
 context "get /space/:id" do
             it "returns the correct space page" do
-            response = get('/space/2', name: 'Buckingham Palace', description: 'Discover the magical world of the Palace, unique in England.', price_per_night: 40, available_from: '2022-09-12', available_to: '2022-09-15', confirmed: 'f', requested: 'f')
+            response = get('/space/2', name: 'Somerset House', description: 'Discover the magical world of the Palace, unique in England.', price_per_night: 40, available_from: '2022-09-12', available_to: '2022-09-15', confirmed: 'f', requested: 'f')
             expect(response.status).to eq (200)
-            expect(response.body).to include '<h3>Buckingham Palace</h3><br>'
+            expect(response.body).to include '<h3>Somerset House</h3><br>'
             end
       end
 
@@ -145,7 +145,7 @@ context "get /filter" do
             it "should return all spaces that are available to be requested within that date range" do
             response = get('/filter', available_from:'2022-09-12', available_to: '2022-09-15')
             expect(response.status).to eq (200)
-            expect(response.body).to include '<h3 class="card-title">Buckingham Palace</h3>'
+            expect(response.body).to include '<h3 class="card-title">Somerset House</h3>'
             end
 
             it "should redirect user to spaces if date inputs are empty" do
