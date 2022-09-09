@@ -3,17 +3,13 @@
     <a class="nav-link" href="/login">Login</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="#">About</a>
+    <a class="nav-link" href="/about">About</a>
     </li>
 </ul>
 
-
-
 <%# sign up form %>
-
 <form id="sign-up" action="/signup" method="POST">
-
-  <h2> Welcome to Lychee MakersBnB </h2>
+<h1 style="text-align: center;">  Welcome to Lychee MakersBnB</h1>
   <br>
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
@@ -27,6 +23,8 @@
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" name="password" class="form-control" id="exampleInputPassword1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="20" placeholder="Password" required>
+    <div id="emailHelp" class="form-text">Password should be 8 characters long and must include an uppercase.</div>
+
   </div>
   <button type="submit" name="signup" class="btn btn-primary">Create your account</button>
 </form>
