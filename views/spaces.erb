@@ -8,35 +8,56 @@
 </ul>
 
     
-  <div id="spaces">
+  <%# <div id="spaces"> %>
     <h2> Welcome to Lychee MakersBnB </h2>
     
     <p> Below you will find a selection of spaces you can book.
-    Press on the "List a Space" button to list your own space</p>
+    Press on the "List a Space" button to list your own space.</p>
   <!-- </div>
   <div id="spaces-booking"> -->
-    <h3> Book a Space </h3>
-  
-      <a href='/space/new'>List a space </a>
 
-    <h3> Choose a date to book </h3>
-
-    <form action='/filter' method='get'>
-            <p> Filter by available night: </p>
-            <input type="date" name="filter">
-            <button>Filter</button>
+    <h4> Add a Space </h4>
+    <form action='/space/new' method='get'>
+        <button class='btn btn-primary'>List a space</button>
     </form>
 
-      <div class="card">
-        <% @space_repo.all.each do |space| %>
+    <%# <h3> Choose a date to book </h3> %>
+    <br>
+    <form method="get" action="/filter">
+      <div class="container" style="margin-bottom:1rem;margin-top:1rem;" >
+        <div class="row">
+            <h4> Filter by available dates: </h4>
+          
+              <div class="col-sm">
+                  <label for="available_from">Available from (DD/MM/YY)</label>
+                  <input type="date" name="available_from"  class="form-control" required/>
+              </div>
+              <div class="col-sm">
+                  <label for="available_to">Available to (DD/MM/YY)</label>
+                  <input type="date" name="available_to" class="form-control" required/>
+              </div>
+              <div class="col-sm">
+                <a class="nav-link">
+                    <input type='submit' value='Filter by date' class="btn btn-default" style=" margin-top:1.5rem;">
+                </a>
+              </div>
+            
+        </div>
+      </div>
+    </form>
+<br>
+    
+
+  <div class="card">
+      <% @space_repo.each do |space| %>
         <h3 class="card-header"><%=space.id%></h3>
-        <div class="card-body">
+          <div class="card-body">
           <h4 class="card-title"><%=space.name%></h4>
           <p class="card-text"><%=space.description%></p>
           <form action='space/<%= space.id%>' method="GET">
             <button class="btn btn-primary">Booking Page</button>
           </form>
-        </div>
-        <%end%>
-      </div>
+          </div>
+      <%end%>
+  </div>
 
