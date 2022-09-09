@@ -28,6 +28,10 @@ h2 {
     /* transform: translate(-50%, -50%); */
 }
 
+#colour {background-color: #061A40;
+        color: white;
+        font-weight: 500px;}
+
 h3 {
     color: #000;
     text-transform: uppercase;
@@ -40,6 +44,11 @@ h3 {
     padding-top: 2%;
     background-color: #B9D6F2;
 }
+
+#requests-box {background-color: #061A40;
+               color: white }
+
+#requests-body {background-color:#061A40}
 
 .card-header {
     padding: 5%;

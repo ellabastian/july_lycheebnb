@@ -50,9 +50,9 @@
 
   <div class="card">
       <% @space_repo.each do |space| %>
-        <h3 class="card-header"><%=space.id%></h3>
           <div class="card-body">
-          <h4 class="card-title"><%=space.name%></h4>
+          <h3 class="card-title"><%=space.name%></h3>
+          <hr>
           <p class="card-text"><%=space.description%></p>
           <form action='space/<%= space.id%>' method="GET">
             <button class="btn btn-primary">Booking Page</button>
