@@ -45,10 +45,16 @@ h3 {
     background-color: #B9D6F2;
 }
 
+
 #requests-box {background-color: #061A40;
                color: white }
 
 #requests-body {background-color:#061A40}
+
+#card-body {
+    padding-left: 10%;
+}
+
 
 .card-header {
     padding: 5%;
@@ -210,6 +216,10 @@ h3 {
     left: 35%;
 }
 
+#requests {
+    display: flex;
+}
+
 .request_from h3 {
     padding: 10px;
     text-align: center;
@@ -244,12 +254,12 @@ h3 {
     background-color: #00ff2f;
 }
 
-#request_from_h3 {
+/* #request_from_h3 {
     color: #BBEDEC;
     position: absolute;
     top: 10%;
     left: 41%;
-}
+} */
 
 .flex-container {
     display: flex;
