@@ -1,8 +1,5 @@
     <ul class="nav justify-content-end">
         <li class="nav-item">
-        <a class="nav-link" href="#">Requests</a>
-        </li>
-        <li class="nav-item">
         <a class="nav-link" href="/spaces">Spaces</a>
         </li>
         <li class="nav-item">
@@ -11,22 +8,21 @@
     </ul>
 
     <h2>Request for <%= @space.name.capitalize%></h2>
-
-    <h3 id='request_from_h3'>From: <%=@user.email%></h3>
-
-    <%# all spaces %>
-    <div class='request_from'>
-        <h3>Other requests for this space<h3>
-        <% @space_repo.all.each do |space| %>
-        <!-- <form action='/request_form/<%= space.id%>'> -->
+    <h4 id='request_from_h3'>From: <%=@user.email%></h4>
+    <br>
+    <h4>Other requests for this space</h4>
+    <!-- <div class='request_from'> -->
+        <!-- <h3>Other requests for this space<h3> -->
+        <!-- <% @space_repo.all.each do |space| %>
+        <form action='/request_form/<%= space.id%>'>
         <h3><%=space.name.capitalize%></h3>
         <a href='/request_form/<%= space.id%>'><button>Check Request</button></a>
         <%# </form> %>
         <%end%>
-    </div>
+    </div> -->
 
-    <%# send email / redirect %>
-    <div class='request_from_button'>
+
+    <!-- <div class='request_from_button'>
         <form action="/confirm_email" method="POST"> 
         <input type='hidden' name='name' value='<%= @space.name.capitalize%>'>
         <button>Confirm Request from <%=@user.email%></button><br><br>
@@ -35,4 +31,37 @@
         <input type='hidden' name='name' value='<%= @space.name.capitalize%>'>
         <button>Deny Request from <%=@user.email%></button>
         </form>
+    </div> -->
+
+    <div id="requests" class="row">
+        <div class="col-sm-6">
+
+                <div class="card">
+                    <h3 class="card-title"><% @space_repo.all.each do |space| %></h3>
+                    <div id="card-body" class="card-body">
+                        <h4><%=space.name.capitalize%></h4>
+                        <form action='/request_form/<%= space.id%>'>
+                            <button class="btn btn-primary">Check Request</button>
+                        </form>
+                    </div>
+                    <%end%>
+                </div>
+            </div>
+        
+        <div class="col-sm-6">
+            <div class="card">
+            <div class="card-body">    
+            <form action="/confirm_email" method="POST"> 
+                <input type='hidden' name='name' value='<%= @space.name.capitalize%>'>
+                <button class="btn btn-primary">Confirm Request from <%=@user.email%></button>
+            </form>
+            <br>
+            <form action="/deny_email" method="POST">
+                <input type='hidden' name='name' value='<%= @space.name.capitalize%>'>
+                <button class="btn btn-primary">Deny Request from <%=@user.email%></button>
+            </form>
+        </div>
+        </div>
     </div>
+</div>
+
